@@ -110,6 +110,71 @@
               "size"
             ]
           },
+          "jmx":{
+            "description":"The Kafka process JMX configuration object, see http://docs.oracle.com/javase/7/docs/technotes/guides/management/agent.html",
+            "type":"object",
+            "properties":{
+              "remote": {
+                "type":"boolean",
+                "description":"Enables the JMX remote agent and local monitoring via a JMX.",
+                "default": true
+              },
+              "remote_port": {
+                "type":"integer",
+                "description":"Enables the JMX remote agent and creates a remote JMX connector to listen through the specified port.",
+                "default": -1
+              },
+              "remote_registry_ssl": {
+                "type":"boolean",
+                "description":"Binds the RMI connector stub to an RMI registry protected by SSL.",
+                "default": false
+              },
+              "remote_ssl": {
+                "type":"boolean",
+                "description":"Enables secure monitoring via SSL. If false, then SSL is not used.",
+                "default": true
+              },
+              "remote_ssl_enabled_protocols": {
+                "type":"string",
+                "description":"A comma-delimited list of SSL/TLS protocol versions to enable.",
+                "default": null
+              },
+              "remote_ssl_enabled_cipher_suites": {
+                "type":"string",
+                "description":"A comma-delimited list of SSL/TLS cipher suites to enable.",
+                "default": null
+              },
+              "remote_ssl_need_client_auth": {
+                "type":"boolean",
+                "description":"Perform client authentication.",
+                "default": true
+              },
+              "remote_authenticate": {
+                "type":"boolean",
+                "description":"If this property is false then JMX does not use passwords or access files.",
+                "default": true
+              },
+              "remote_password_file": {
+                "type":"string",
+                "description":"Specifies location for password file.",
+                "default": null
+              },
+              "remote_access_file": {
+                "type":"string",
+                "description":"Specifies location for the access file..",
+                "default": null
+              },
+              "remote_login_config": {
+                "type":"string",
+                "description":"Specifies the name of a Java Authentication and Authorization Service (JAAS) login configuration entry.",
+                "default": null
+              },
+            },
+            "additionalProperties": false,
+            "required": [
+              "size"
+            ]
+          },
           "disk":{
             "description":"Broker disk requirements (only respected with persistent volumes)",
             "type":"integer",

@@ -551,6 +551,29 @@ Kafka service allows configuration of JVM Heap Size for the broker JVM process. 
 
 **Note**: The total memory allocated for the Mesos task is specified by the `BROKER_MEM` configuration parameter. The value for `BROKER_HEAP_MB` should not be greater than `BROKER_MEM` value. Also, if `BROKER_MEM` is greater than `BROKER_HEAP_MB`, then the Linux operating system will use `BROKER_MEM` - `BROKER_HEAP_MB` for [PageCache](https://en.wikipedia.org/wiki/Page_cache).
 
+### JMX (Java Management Extensions)
+
+Kafka service allows configuration of JMX properties for the broker JVM process. To configure it:
+* **DC/OS cli options.json**:
+
+```json
+    {
+        "brokers": {
+            "jmx": {
+                "remote": true,
+                "remote_port": "9010",
+                "remote_ssl": false,
+                "remote_authenticate": false
+            }
+        }
+    }
+```
+This, for example, will allow non-ssl and unauthenticated access to JMX on port 9010.
+
+* **DC/OS web interface**: Set the environment variables like `BROKER_JMX_REMOTE` = `true`, `BROKER_JMX_REMOTE_PORT` = `9010` etc.
+
+**Note**: See [Java JMX Docs](http://docs.oracle.com/javase/7/docs/technotes/guides/management/agent.html) for more details.
+
 ### Alternate Zookeeper 
 
 By default the Kafka framework uses the Zookeeper ensemble made available on the Mesos masters of a DC/OS cluster. You can configure an alternate Zookeeper installationat install time.

@@ -171,9 +171,7 @@
               },
             },
             "additionalProperties": false,
-            "required": [
-              "size"
-            ]
+            "required": []
           },
           "disk":{
             "description":"Broker disk requirements (only respected with persistent volumes)",

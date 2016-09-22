@@ -25,7 +25,8 @@ public class ConfigTestUtils {
                 KafkaTestUtils.testKafkaUri,
                 KafkaTestUtils.testJavaUri,
                 KafkaTestUtils.testOverriderUri,
-                KafkaTestUtils.testPort);
+                KafkaTestUtils.testPort,
+                new JmxConfig(9010));
     }
 
     public static KafkaConfiguration getTestKafkaConfiguration() {

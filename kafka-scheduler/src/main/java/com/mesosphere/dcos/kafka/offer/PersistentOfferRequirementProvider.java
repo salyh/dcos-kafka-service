@@ -176,6 +176,7 @@ public class PersistentOfferRequirementProvider implements KafkaOfferRequirement
 
       final Map<String, String> newEnvMap = fromEnvironmentToMap(oldEnvironment);
       newEnvMap.put("KAFKA_HEAP_OPTS", getKafkaHeapOpts(brokerConfig.getHeap()));
+      newEnvMap.put("KAFKA_JMX_OPTS",  OfferUtils.getKafkaJmxOpts(brokerConfig.getJmx()));
 
       final CommandInfo.Builder newCommandBuilder = CommandInfo.newBuilder(oldCommand);
       newCommandBuilder.clearEnvironment();
@@ -346,7 +347,8 @@ public class PersistentOfferRequirementProvider implements KafkaOfferRequirement
       .addEnvironmentVar(KafkaEnvConfigUtils.toEnvName("listeners"), "PLAINTEXT://:" + port)
       .addEnvironmentVar(KafkaEnvConfigUtils.toEnvName("port"), Long.toString(port))
       .addEnvironmentVar("KAFKA_DYNAMIC_BROKER_PORT", Boolean.toString(isDynamicPort))
-      .addEnvironmentVar("KAFKA_HEAP_OPTS", getKafkaHeapOpts(brokerConfig.getHeap()));
+      .addEnvironmentVar("KAFKA_HEAP_OPTS", getKafkaHeapOpts(brokerConfig.getHeap()))
+      .addEnvironmentVar("KAFKA_JMX_OPTS", OfferUtils.getKafkaJmxOpts(brokerConfig.getJmx()));
 
     // Launch command for custom executor
     final String executorCommand = "./executor/bin/kafka-executor server ./executor/conf/executor.yml";

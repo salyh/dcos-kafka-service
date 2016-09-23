@@ -77,7 +77,7 @@ public class BrokerConfiguration {
     public HeapConfig getHeap() {
         return heap;
     }
-    
+
     @JsonProperty("heap")
     public void setHeap(HeapConfig heap) {
         this.heap = heap;

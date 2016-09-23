@@ -1,5 +1,6 @@
 package com.mesosphere.dcos.kafka.config;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -50,6 +51,7 @@ public class JmxConfig {
         this.remotePort = remotePort;
     }
 
+    @JsonIgnore
     public boolean isRemote() {
         return remote;
     }
@@ -68,6 +70,7 @@ public class JmxConfig {
         this.remotePort = remotePort;
     }
 
+    @JsonIgnore
     public boolean isRemoteRegistrySsl() {
         return remoteRegistrySsl;
     }
@@ -77,6 +80,7 @@ public class JmxConfig {
         this.remoteRegistrySsl = remoteRegistrySsl;
     }
 
+    @JsonIgnore
     public boolean isRemoteSsl() {
         return remoteSsl;
     }
@@ -104,6 +108,7 @@ public class JmxConfig {
         this.remoteSslEnabledCipherSuites = remoteSslEnabledCipherSuites;
     }
 
+    @JsonIgnore
     public boolean isRemoteSslNeedClientAuth() {
         return remoteSslNeedClientAuth;
     }
@@ -113,6 +118,7 @@ public class JmxConfig {
         this.remoteSslNeedClientAuth = remoteSslNeedClientAuth;
     }
 
+    @JsonIgnore
     public boolean isRemoteAuthenticate() {
         return remoteAuthenticate;
     }

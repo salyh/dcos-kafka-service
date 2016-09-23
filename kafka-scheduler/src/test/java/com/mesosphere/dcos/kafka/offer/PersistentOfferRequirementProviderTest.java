@@ -1,6 +1,7 @@
 package com.mesosphere.dcos.kafka.offer;
 
 import com.mesosphere.dcos.kafka.commons.KafkaTask;
+import com.mesosphere.dcos.kafka.config.ConfigUtils;
 import com.mesosphere.dcos.kafka.config.HeapConfig;
 import com.mesosphere.dcos.kafka.config.JmxConfig;
 import com.mesosphere.dcos.kafka.config.KafkaConfigState;
@@ -291,7 +292,7 @@ public class PersistentOfferRequirementProviderTest {
                       .addVariables(Environment.Variable
                               .newBuilder()
                               .setName("KAFKA_JMX_OPTS")
-                              .setValue(OfferUtils.getKafkaJmxOpts(jmxConfig))))
+                              .setValue(ConfigUtils.getKafkaJmxOpts(jmxConfig))))
               .build();
       taskBuilder.setCommand(newCommand);
       return taskBuilder.build();

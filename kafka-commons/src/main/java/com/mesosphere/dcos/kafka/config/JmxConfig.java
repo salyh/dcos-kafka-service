@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class JmxConfig {
     @JsonProperty("remote")
-    private boolean remote = true;
+    private boolean remote = false;
 
     @JsonProperty("remote_port")
     private int remotePort = -1;
 
     @JsonProperty("remote_registry_ssl")
-    private boolean remoteRegistrySsl = false;
+    private boolean remoteRegistrySsl = true;
 
     @JsonProperty("remote_ssl")
     private boolean remoteSsl = true;
@@ -47,8 +47,12 @@ public class JmxConfig {
 
     }
 
-    public JmxConfig(final int remotePort) {
+    public JmxConfig(boolean remote, int remotePort, boolean remoteSsl, boolean remoteAuthenticate) {
+        super();
+        this.remote = remote;
         this.remotePort = remotePort;
+        this.remoteSsl = remoteSsl;
+        this.remoteAuthenticate = remoteAuthenticate;
     }
 
     @JsonIgnore

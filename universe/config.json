@@ -117,7 +117,7 @@
               "remote": {
                 "type":"boolean",
                 "description":"Enables the JMX remote agent and local monitoring via a JMX.",
-                "default": true
+                "default": false
               },
               "remote_port": {
                 "type":"integer",
@@ -127,7 +127,7 @@
               "remote_registry_ssl": {
                 "type":"boolean",
                 "description":"Binds the RMI connector stub to an RMI registry protected by SSL.",
-                "default": false
+                "default": true
               },
               "remote_ssl": {
                 "type":"boolean",

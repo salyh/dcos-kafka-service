@@ -158,7 +158,7 @@ public class PersistentOfferRequirementProviderTest {
     expectedEnvMap.put("KAFKA_DYNAMIC_BROKER_PORT", Boolean.toString(false));
     expectedEnvMap.put("KAFKA_OVERRIDE_BROKER_ID", String.valueOf(0));
     expectedEnvMap.put("KAFKA_HEAP_OPTS", "-Xms500M -Xmx500M");
-    expectedEnvMap.put("KAFKA_JMX_OPTS", "-Dcom.sun.management.jmxremote.port=9010");
+    expectedEnvMap.put("KAFKA_JMX_OPTS", ConfigUtils.getKafkaJmxOpts(new JmxConfig(true, KafkaTestUtils.testJMXPort, false, false)));
     expectedEnvMap.put("TASK_TYPE", KafkaTask.BROKER.name());
 
     Assert.assertEquals(expectedEnvMap.size(), envFromTask.size());
@@ -217,11 +217,11 @@ public class PersistentOfferRequirementProviderTest {
             "disk",
             2500);
     final HeapConfig oldHeapConfig = new HeapConfig(256);
-    //final JmxConfig oldJmxConfig = new JmxConfig(8010);
+    final JmxConfig oldJmxConfig = new JmxConfig(true, 8010, false, false);
 
     TaskInfo oldTaskInfo = getTaskInfo(Arrays.asList(oldCpu, oldMem, oldDisk));
     oldTaskInfo = configKafkaHeapOpts(oldTaskInfo, oldHeapConfig);
-    //oldTaskInfo = configKafkaJmxOpts(oldTaskInfo, oldJmxConfig);
+    oldTaskInfo = configKafkaJmxOpts(oldTaskInfo, oldJmxConfig);
 
     PersistentOfferRequirementProvider provider = new PersistentOfferRequirementProvider(state, configState, clusterState);
     OfferRequirement req = provider.getUpdateOfferRequirement(KafkaTestUtils.testConfigName, oldTaskInfo);
@@ -251,7 +251,7 @@ public class PersistentOfferRequirementProviderTest {
     Assert.assertEquals("KAFKA_HEAP_OPTS", envVariables.get(1).getName());
     Assert.assertEquals("-Xms500M -Xmx500M", envVariables.get(1).getValue());
     Assert.assertEquals("KAFKA_JMX_OPTS", envVariables.get(2).getName());
-    Assert.assertEquals("-Dcom.sun.management.jmxremote.port=9010", envVariables.get(2).getValue());
+    Assert.assertEquals(ConfigUtils.getKafkaJmxOpts(new JmxConfig(true, KafkaTestUtils.testJMXPort, false, false)), envVariables.get(2).getValue());
     Assert.assertEquals("KAFKA_OVERRIDE_PORT", envVariables.get(3).getName());
     Assert.assertEquals("9092", envVariables.get(3).getValue());
   }
